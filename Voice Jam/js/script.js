@@ -46,15 +46,15 @@ function draw() {
 
         stroke(r, g, b)
 
-
+        rotate(8)
 
 
         beginShape()
-        for (var j = 0; j < 360; j += 10) {
-            var rad = i * 9
+        for (var j = 0; j < 360; j += 60) {
+            var rad = i * 5
             var x = rad * cos(j)
             var y = rad * sin(j)
-            var z = sin(frameCount * 2 + i * 10) * 50
+            var z = sin(frameCount * 2 + i * 5) * 50
 
             vertex(x,y,z)
         }
