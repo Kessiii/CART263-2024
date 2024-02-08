@@ -31,9 +31,9 @@ function setup() {
 Description of draw()
 */
 function draw() {
-    background(mouseX, mouseY, 0)
+    background(mouseX, 0, 0)
 
-    rotateX(60)
+    rotateX(6)
 
     noFill()
     stroke(255)
@@ -54,7 +54,7 @@ function draw() {
             var rad = i * 6
             var x = rad * cos(j)
             var y = rad * sin(j)
-            var z = sin(frameCount * 2 + i * 5) * 50
+            var z = sin(frameCount * 4 + i * 5) * 150
 
             vertex(x,y,z)
         }
