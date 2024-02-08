@@ -31,7 +31,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-    background(30)
+    background(mouseX, mouseY, 0)
 
     rotateX(60)
 
@@ -46,12 +46,12 @@ function draw() {
 
         stroke(r, g, b)
 
-        rotate(8)
+        rotate(0)
 
 
         beginShape()
         for (var j = 0; j < 360; j += 60) {
-            var rad = i * 5
+            var rad = i * 6
             var x = rad * cos(j)
             var y = rad * sin(j)
             var z = sin(frameCount * 2 + i * 5) * 50
