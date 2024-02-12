@@ -1,9 +1,8 @@
 /**
-Title of Project
-Author Name
+Voice Jam - Talk to your Art
+Kestrel Villapando
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+I wanted to create a generative animation/art that moves in 
 */
 
 "use strict";
@@ -31,14 +30,14 @@ function setup() {
 Description of draw()
 */
 function draw() {
-    background(mouseX, 0, 0)
+    background(100, 0, 0)
 
-    rotateX(6)
+    rotateX(15)
 
     noFill()
     stroke(255)
 
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 90; i++) {
 
         var r = map(sin(frameCount / 2), -1, 1, 100, 200)
         var g = map(i, 0, 50, 100, 200)
@@ -51,7 +50,7 @@ function draw() {
 
         beginShape()
         for (var j = 0; j < 360; j += 60) {
-            var rad = i * 6
+            var rad = i * 8
             var x = rad * cos(j)
             var y = rad * sin(j)
             var z = sin(frameCount * 4 + i * 5) * 150
