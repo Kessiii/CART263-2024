@@ -8,6 +8,7 @@ author, and this description to match your project!
 
 "use strict";
 
+let voice = new p5.Speech();
 
 /**
 Description of preload
@@ -30,4 +31,8 @@ Description of draw()
 */
 function draw() {
 
+}
+
+function mousePressed() {
+    voice.speak('hello federico, I have been watching you from the screens, you need to wake up.')
 }
