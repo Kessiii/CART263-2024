@@ -2,7 +2,7 @@
 Voice Jam - Talk to your Art
 Kestrel Villapando
 
-I wanted to create a generative animation/art that moves in 
+I wanted to create a generative animation art that moves with the sound of the user's voice. 
 */
 
 "use strict";
