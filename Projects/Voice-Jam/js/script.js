@@ -54,7 +54,7 @@ function draw() {
     translate(0,0, -200)
     noStroke()
     ambientMaterial(250);
-    plane(2000, 2000)
+    plane(4000, 4000)
     pop()
 
 
