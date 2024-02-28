@@ -19,7 +19,7 @@ let zoff = 0;
 const maxRectSize = 8;
 const spacing = 0.2;
 
-const keypointRadius = 25;
+const keypointRadius = 50;
 
 function setup() {
   noiseDetail(8, 0.65);
@@ -76,10 +76,9 @@ function drawPerlin() {
           const dist = Math.sqrt((x - kpx) ** 2 + (y - kpy) ** 2);
           if (dist < keypointRadius) {
             console.log(kpz);
-            distScale = Math.abs(dist - keypointRadius) / keypointRadius;
+            distScale += Math.abs(dist - keypointRadius) / keypointRadius;
 
             nearKeypoint = false;
-            break;
           }
         }
         if (nearKeypoint) break;
