@@ -21,6 +21,9 @@ const spacing = 0.2;
 
 const keypointRadius = 50;
 
+const color1 = [252, 94, 3];
+const color2 = [161, 3, 252];
+
 function setup() {
   noiseDetail(8, 0.65);
   video = createCapture(VIDEO);
@@ -87,14 +90,22 @@ function drawPerlin() {
       yoff += inc; // Increment yoff
 
       let noiseVal = noise(xoff, yoff, zoff);
+      if (!nearKeypoint) {
+        noiseVal += 0.4 * (distScale + 0.1);
+      }
+
       push();
       translate(x, y);
       // rotate(TWO_PI * noiseVal);
       noStroke();
-      fill(0);
-      if (!nearKeypoint) {
-        noiseVal += 0.4 * (distScale + 0.1);
-      }
+
+      const fillColor = color(
+        interpolate(color1[0], color2[0], noiseVal),
+        interpolate(color1[1], color2[1], noiseVal),
+        interpolate(color1[2], color2[2], noiseVal)
+      );
+
+      fill(fillColor);
       rect(
         0,
         0,
@@ -133,4 +144,8 @@ function drawKeypoints() {
       ellipse(x * scaleFactor, y * scaleFactor, 10, 10);
     }
   }
+}
+
+function interpolate(val1, val2, t) {
+  return val1 * t + val2 * (1 - t);
 }
