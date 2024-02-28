@@ -5,9 +5,6 @@ Kestrel Villapando
 
 "use strict";
 
-/**
-Description of preload
-*/
 let handpose;
 let video;
 let predictions = [];
@@ -54,10 +51,8 @@ function draw() {
   translate(width, 0);
   scale(-1, 1);
 
-  background(255);
-  // We can call both functions to draw all keypoints and the skeletons
+  background(25);
   drawPerlin();
-  // drawKeypoints();
 }
 
 function drawPerlin() {
@@ -100,9 +95,9 @@ function drawPerlin() {
       noStroke();
 
       const fillColor = color(
-        interpolate(color1[0], color2[0], noiseVal),
-        interpolate(color1[1], color2[1], noiseVal),
-        interpolate(color1[2], color2[2], noiseVal)
+        interpolate(color1[0], color2[0], noiseVal ** 3),
+        interpolate(color1[1], color2[1], noiseVal ** 3),
+        interpolate(color1[2], color2[2], noiseVal ** 3)
       );
 
       fill(fillColor);
