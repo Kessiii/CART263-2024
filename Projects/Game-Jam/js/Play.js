@@ -15,5 +15,7 @@ class Play extends Phaser.Scene {
     this.add.text(100, 100, gameDescription, style);
   }
 
-  update() {}
+  update() {
+    
+  }
 }
