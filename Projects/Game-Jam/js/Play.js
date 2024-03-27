@@ -6,13 +6,15 @@ class Play extends Phaser.Scene {
   }
 
   create() {
-    this.shape = this.add.image(100, 100, "shape");
+    this.shape = this.physics.add.image(100, 100, "shape");
 
-    this.avatar = this.add.sprite(200, 200, "avatar");
+    this.avatar = this.physics.add.sprite(200, 200, "avatar");
 
     this.createAnimation;
 
-    this.avatar.play("avatar-idle");
+    this.avatar.setVelocityX(100);
+
+    this.avatar.play("avatar-moving");
   }
 
   update() {}
@@ -24,7 +26,7 @@ class Play extends Phaser.Scene {
         start: 0,
         end: 4,
       }),
-      frameRate: 20,
+      frameRate: 24,
       repeat: -1,
     });
 
