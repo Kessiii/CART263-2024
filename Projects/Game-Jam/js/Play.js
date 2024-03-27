@@ -7,13 +7,15 @@ class Play extends Phaser.Scene {
 
   create() {
     this.shape = this.physics.add.image(100, 100, "shape");
-
+    this.shape.setImmovable(true);
     this.avatar = this.physics.add.sprite(200, 200, "avatar");
 
     this.createAnimation();
 
     this.avatar.play("avatar-idle");
     this.avatar.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.avatar, this.shape);
 
     this.cursors = this.input.keyboard.createCursorKeys();
   }
