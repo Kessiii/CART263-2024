@@ -10,14 +10,38 @@ class Play extends Phaser.Scene {
 
     this.avatar = this.physics.add.sprite(200, 200, "avatar");
 
-    this.createAnimation;
+    this.createAnimation();
 
-    this.avatar.setVelocityX(100);
+    this.avatar.play("avatar-idle");
+    this.avatar.setCollideWorldBounds(true);
 
-    this.avatar.play("avatar-moving");
+    this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  update() {}
+  update() {
+    this.avatar.setVelocity(0);
+
+    if ((this, this.cursors.left.isDown)) {
+      this.avatar.setVelocityX(-300);
+    } else if (this.cursors.right.isDown) {
+      this.avatar.setVelocityX(300);
+    }
+
+    if (this.cursors.up.isDown) {
+      this.avatar.setVelocityY(-300);
+    } else if (this.cursors.down.isDown) {
+      this.avatar.setVelocityY(300);
+    }
+
+    if (
+      this.avatar.body.velocity.x !== 0 ||
+      this.avatar.body.velocity.y !== 0
+    ) {
+      this.avatar.play("avatar-moving", true);
+    } else {
+      this.avatar.play("avatar-idle", true);
+    }
+  }
 
   createAnimation() {
     this.anims.create({
