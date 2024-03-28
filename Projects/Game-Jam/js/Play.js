@@ -6,13 +6,28 @@ class Play extends Phaser.Scene {
   }
 
   create() {
-    this.shape = this.physics.add.image(100, 100, "shape");
-    this.shape.setImmovable(true);
+    this.shapes = this.physics.add.group({
+      key: "shape",
+      immovable: true,
+      quantity: 30,
+    });
+    this.shapes.children.each(function (wall) {
+      let x = Math.random() * this.sys.canvas.width;
+      let y = Math.random() * this.sys.canvas.height;
+      wall.setPosition(x, y);
+      wall.setTint(0xdd3333);
+    }, this);
 
-    this.collectable = this.physics.add.image(300, 300, "shape");
-    this.collectable.setTint(0x33dd33);
-    this.collectable2 = this.physics.add.image(400, 300, "shape");
-    this.collectable2.setTint(0x33dd33);
+    this.collectables = this.physics.add.group({
+      key: "shape",
+      quantity: 100,
+    });
+    this.collectables.children.each(function (collectable) {
+      let x = Math.random() * this.sys.canvas.width;
+      let y = Math.random() * this.sys.canvas.height;
+      collectable.setPosition(x, y);
+      collectable.setTint(0x33dd33);
+    }, this);
 
     this.avatar = this.physics.add.sprite(200, 200, "avatar");
 
@@ -21,10 +36,10 @@ class Play extends Phaser.Scene {
     this.avatar.play("avatar-idle");
     this.avatar.setCollideWorldBounds(true);
 
-    this.physics.add.collider(this.avatar, this.shape);
+    this.physics.add.collider(this.avatar, this.shapes);
     this.physics.add.overlap(
       this.avatar,
-      this.collectable,
+      this.collectables,
       this.collectItem,
       null,
       this
