@@ -1,5 +1,5 @@
 //This is the Phaser3 config file
-
+const splashZone = new SplashZone();
 //Game Scene
 const config = {
   type: Phaser.AUTO,
@@ -22,4 +22,9 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-console.log(game);
+
+//loading scene
+game.scene.add("splashZone", splashZone);
+
+//Title Screen
+game.scene.start("splashZone");
