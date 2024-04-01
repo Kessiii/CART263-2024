@@ -1,3 +1,5 @@
+import SplashZone from "./splashZone";
+
 //This is the Phaser3 config file
 const splashZone = new SplashZone();
 //Game Scene
