@@ -1,7 +1,10 @@
-import SplashZone from "./splashZone";
+import SplashZone from "./splashZone.js";
+import TitleScene from "./titleScene.js";
 
 //This is the Phaser3 config file
 const splashZone = new SplashZone();
+const titleScene = new TitleScene();
+
 //Game Scene
 const config = {
   type: Phaser.AUTO,
@@ -15,7 +18,7 @@ const config = {
   },
 
   //Setting background color
-  backgroundColor: 0x5f6e7a,
+  backgroundColor: 0xffffff,
   scale: {
     mode: Phaser.Scale.FIT,
     // Placing it in the middle of the page
@@ -27,6 +30,7 @@ const game = new Phaser.Game(config);
 
 //loading scene
 game.scene.add("splashZone", splashZone);
+game.scene.add("titleScene", titleScene);
 
 //Title Screen
 game.scene.start("splashZone");
