@@ -1,9 +1,11 @@
 import SplashZone from "./splashZone.js";
 import TitleScene from "./titleScene.js";
+import MenuScene from "./menuScene.js";
 
 //This is the Phaser3 config file
 const splashZone = new SplashZone();
 const titleScene = new TitleScene();
+const menuScene = new MenuScene();
 
 //Game Scene
 const config = {
