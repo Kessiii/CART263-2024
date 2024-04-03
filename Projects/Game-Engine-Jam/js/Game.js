@@ -33,6 +33,7 @@ const game = new Phaser.Game(config);
 //loading scene
 game.scene.add("splashZone", splashZone);
 game.scene.add("titleScene", titleScene);
+game.scene.add("menuScene", menuScene);
 
 //Title Screen
 game.scene.start("splashZone");
