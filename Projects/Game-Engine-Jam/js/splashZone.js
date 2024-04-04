@@ -1,3 +1,10 @@
+/**
+ - Talk to your Art
+Kestrel Villapando
+
+I wanted to create a generative animation art that moves with the sound of the user's voice. 
+*/
+
 class SplashZone extends Phaser.Scene {
   constructor() {
     super({ key: "splashZone" });
