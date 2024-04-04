@@ -25,12 +25,15 @@ class PlayScene extends Phaser.Scene {
 
   preload() {
     console.log("Play Scene");
-
+    //Images
     this.load.image("lineBackground", "./assets/images/play_Screen.png");
     this.load.image("shape", "./assets/images/shape.png");
     this.load.image("pew", "./assets/images/pewpew.png");
-    this.load.audio("shoot", "./assets/sound/pew.WAV");
     this.load.image("rival", "./assets/images/enemy_shape.png");
+
+    //Sounds
+    this.load.audio("shoot", "./assets/sound/pew.WAV");
+    this.load.audio("pulse", "./assets/sound/pulse.WAV");
   }
 
   create(data) {
@@ -47,6 +50,19 @@ class PlayScene extends Phaser.Scene {
     //Rival group
     this.rivalGroup = this.add.group();
     this.createRival();
+
+    //Collision between shape and rival
+    this.physics.add.collider(
+      this.pewGroup,
+      this.rivalGroup,
+      function (pewCollide, rivalCollide) {
+        rivalCollide.destroy();
+        pewCollide.destroy();
+        this.sound.play("pulse");
+        this.createRival();
+        this.createRival();
+      }.bind(this)
+    );
   }
 
   update(time, delta) {
