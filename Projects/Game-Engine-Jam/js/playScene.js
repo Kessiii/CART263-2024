@@ -24,6 +24,13 @@ class PlayScene extends Phaser.Scene {
       fill: "#ffffff",
       align: "center",
     };
+
+    this.gameOverText = null;
+    this.gameOverTextStyle = {
+      font: "65px Futura",
+      fill: "#ffffff",
+      align: "center",
+    };
   }
 
   init(data) {
@@ -41,6 +48,7 @@ class PlayScene extends Phaser.Scene {
     //Sounds
     this.load.audio("shoot", "./assets/sound/pew.WAV");
     this.load.audio("pulse", "./assets/sound/pulse.WAV");
+    this.load.audio("shutdown", "./assets/sound/dead.WAV");
   }
 
   create(data) {
@@ -65,7 +73,7 @@ class PlayScene extends Phaser.Scene {
     this.rivalGroup = this.add.group();
     this.createRival();
 
-    //Collision between shape and rival
+    //Collision between pew and rival
     this.physics.add.collider(
       this.pewGroup,
       this.rivalGroup,
@@ -77,6 +85,30 @@ class PlayScene extends Phaser.Scene {
         this.scoreText.setText("Score:" + this.score.toString());
         this.createRival();
         this.createRival();
+      }.bind(this)
+    );
+
+    //Collision between shape and rival
+    this.physics.add.collider(
+      this.shape,
+      this.rivalGroup,
+      function (shapeCollide, rivalCollide) {
+        this.sound.play("shutdown");
+        this.physics.pause();
+        rivalCollide.destroy();
+        shapeCollide.destroy();
+        this.gameOverText = this.add
+          .text(
+            1920 / 2,
+            1080 / 2,
+            "Game Over!\nClick to play again.",
+            this.gameOverTextStyle
+          )
+          .setOrigin(0.5);
+        this.gameOverText.setInteractive({ useHandCursor: true });
+        this.gameOverText.on("pointerdown", () =>
+          this.scene.start("playScene")
+        );
       }.bind(this)
     );
   }
