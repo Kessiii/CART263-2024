@@ -1,4 +1,16 @@
 class PlayScene extends Phaser.Scene {
+  createRival() {
+    const rivalXLocation = Math.floor(Math.random() * 1920) + 1;
+    let rivalXVelocity = Math.floor(Math.random() * 50) + 1;
+    rivalXVelocity *= Math.round(Math.random()) ? 1 : -1;
+    const anRival = this.physics.add
+      .sprite(rivalXLocation, -100, "rival")
+      .setScale(0.2);
+    anRival.body.velocity.y = 200;
+    anRival.body.velocity.x = rivalXVelocity;
+
+    this.rivalGroup.add(anRival);
+  }
   constructor() {
     super({ key: "playScene" });
 
@@ -18,6 +30,7 @@ class PlayScene extends Phaser.Scene {
     this.load.image("shape", "./assets/images/shape.png");
     this.load.image("pew", "./assets/images/pewpew.png");
     this.load.audio("shoot", "./assets/sound/pew.WAV");
+    this.load.image("rival", "./assets/images/enemy_shape.png");
   }
 
   create(data) {
@@ -30,6 +43,10 @@ class PlayScene extends Phaser.Scene {
 
     //Pewpew group
     this.pewGroup = this.physics.add.group();
+
+    //Rival group
+    this.rivalGroup = this.add.group();
+    this.createRival();
   }
 
   update(time, delta) {
