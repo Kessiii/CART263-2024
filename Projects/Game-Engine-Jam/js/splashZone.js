@@ -1,8 +1,8 @@
 /**
- - Talk to your Art
+Shape Shooter - Studio Screen 
 Kestrel Villapando
 
-I wanted to create a generative animation art that moves with the sound of the user's voice. 
+This is where the fake game studio title appears before showing the game.
 */
 
 class SplashZone extends Phaser.Scene {

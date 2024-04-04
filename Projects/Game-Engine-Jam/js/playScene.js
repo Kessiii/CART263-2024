@@ -1,3 +1,10 @@
+/**
+Shape Shooter - Gameplay
+Kestrel Villapando
+
+This is where the game happens, the whole gameplay.
+*/
+
 class PlayScene extends Phaser.Scene {
   createRival() {
     const rivalXLocation = Math.floor(Math.random() * 1920) + 1;

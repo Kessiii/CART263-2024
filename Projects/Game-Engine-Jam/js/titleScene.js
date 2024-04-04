@@ -1,3 +1,10 @@
+/**
+Shape Shooter - Title Screen 
+Kestrel Villapando
+
+This is where the game title will load before showing the menu screen.
+*/
+
 class TitleScene extends Phaser.Scene {
   constructor() {
     super({ key: "titleScene" });
