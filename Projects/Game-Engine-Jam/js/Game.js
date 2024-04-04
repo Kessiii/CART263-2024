@@ -1,3 +1,10 @@
+/**
+Shape Shooter - 
+Kestrel Villapando
+
+Where all scenes connect. 
+*/
+
 import SplashZone from "./splashZone.js";
 import TitleScene from "./titleScene.js";
 import MenuScene from "./menuScene.js";
