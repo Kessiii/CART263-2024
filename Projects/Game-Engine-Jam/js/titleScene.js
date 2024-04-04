@@ -35,7 +35,11 @@ class TitleScene extends Phaser.Scene {
       .setOrigin(0.5);
   }
 
-  update(time, delta) {}
+  update(time, delta) {
+    if (time > 6000) {
+      this.scene.switch("menuScene");
+    }
+  }
 }
 
 export default TitleScene;
