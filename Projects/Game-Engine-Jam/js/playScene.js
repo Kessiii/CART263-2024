@@ -17,6 +17,13 @@ class PlayScene extends Phaser.Scene {
     this.background = null;
     this.shape = null;
     this.firePew = false;
+    this.score = 0;
+    this.scoreText = null;
+    this.scoreTextStyle = {
+      font: "65px Futura",
+      fill: "#ffffff",
+      align: "center",
+    };
   }
 
   init(data) {
@@ -40,6 +47,13 @@ class PlayScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, "lineBackground").setScale(1.5);
     this.background.setOrigin(0, 0);
 
+    this.scoreText = this.add.text(
+      10,
+      10,
+      "Score:" + this.score.toString(),
+      this.scoreTextStyle
+    );
+
     this.shape = this.physics.add
       .sprite(1920 / 2, 1080 - 100, "shape")
       .setScale(0.2);
@@ -59,6 +73,8 @@ class PlayScene extends Phaser.Scene {
         rivalCollide.destroy();
         pewCollide.destroy();
         this.sound.play("pulse");
+        this.score = this.score + 1;
+        this.scoreText.setText("Score:" + this.score.toString());
         this.createRival();
         this.createRival();
       }.bind(this)
