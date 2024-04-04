@@ -14,9 +14,11 @@ class MenuScene extends Phaser.Scene {
     console.log("Menu Scene");
     this.load.image("menuSceneBackground", "./assets/images/menu_screen.png");
     this.load.image("startButton", "./assets/images/startButton.png");
+    this.load.audio("menu", "./assets/sound/menu.WAV");
   }
 
   create(data) {
+    this.sound.play("menu");
     this.menuSceneBackgroundImage = this.add
       .sprite(0, 0, "menuSceneBackground")
       .setScale(1.5);
