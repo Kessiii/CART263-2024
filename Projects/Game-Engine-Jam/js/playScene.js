@@ -17,6 +17,7 @@ class PlayScene extends Phaser.Scene {
     this.load.image("lineBackground", "./assets/images/play_Screen.png");
     this.load.image("shape", "./assets/images/shape.png");
     this.load.image("pew", "./assets/images/pewpew.png");
+    this.load.audio("shoot", "./assets/sound/pew.WAV");
   }
 
   create(data) {
@@ -58,12 +59,20 @@ class PlayScene extends Phaser.Scene {
           "pew"
         );
         this.pewGroup.add(aNewPew);
+        this.sound.play("shoot");
       }
     }
 
     if (keySpaceObj.isUp == true) {
       this.firePew = false;
     }
+
+    this.pewGroup.children.each(function (item) {
+      item.y = item.y - 15;
+      if (item.y < 0) {
+        item.destroy();
+      }
+    });
   }
 }
 
