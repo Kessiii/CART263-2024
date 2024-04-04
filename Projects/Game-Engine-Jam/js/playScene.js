@@ -26,7 +26,23 @@ class PlayScene extends Phaser.Scene {
       .setScale(0.2);
   }
 
-  update(time, delta) {}
+  update(time, delta) {
+    const keyLeftObj = this.input.keyboard.addKey("LEFT");
+    const keyRightObj = this.input.keyboard.addKey("RIGHT");
+
+    if (keyLeftObj.isDown === true) {
+      this.shape.x = this.shape.x -= 20;
+      if (this.shape.x < 0) {
+        this.shape.x = 0;
+      }
+    }
+    if (keyRightObj.isDown === true) {
+      this.shape.x = this.shape.x += 20;
+      if (this.shape.x > 1920) {
+        this.shape.x = 1920;
+      }
+    }
+  }
 }
 
 export default PlayScene;
