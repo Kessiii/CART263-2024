@@ -21,7 +21,7 @@ class MenuScene extends Phaser.Scene {
     this.sound.play("menu");
     this.menuSceneBackgroundImage = this.add
       .sprite(0, 0, "menuSceneBackground")
-      .setScale(1.4);
+      .setScale(1.5);
     this.menuSceneBackgroundImage.x = 1920 / 2;
     this.menuSceneBackgroundImage.y = 1080 / 2;
 
