@@ -1,10 +1,10 @@
-// The Particle class
 class Particle {
   constructor() {
     this.pos = createVector(random(width), random(height));
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
-    this.maxspeed = 2;
+    this.maxspeed = 4; // Maximum speed of the particle
+    this.maxforce = 0.7; // Maximum steering force
     this.prevPos = this.pos.copy();
   }
 
@@ -19,10 +19,19 @@ class Particle {
     this.acc.add(force);
   }
 
+  follow(vectors) {
+    var x = floor(this.pos.x / scl);
+    var y = floor(this.pos.y / scl);
+    var index = x + y * cols;
+    var force = vectors[index];
+    this.applyForce(force);
+  }
+
   followHand(target) {
-    let desired = p5.Vector.sub(target, this.pos); // A vector pointing from the position to the target
+    let desired = p5.Vector.sub(target, this.pos);
     desired.setMag(this.maxspeed);
     let steer = p5.Vector.sub(desired, this.vel);
+    steer.limit(this.maxforce);
     this.applyForce(steer);
   }
 
