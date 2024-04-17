@@ -23,8 +23,28 @@ var particles = [];
 
 var flowfield;
 
+let video;
+let handpose;
+let predictions = [];
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  video = createCapture(VIDEO);
+  video.size(width, height);
+
+  handpose = ml5.handpose(
+    video,
+    {
+      flipHorizontal: true, // since the video will act as a mirror
+    },
+    () => console.log("Model loaded")
+  );
+
+  handpose.on("predict", (results) => {
+    predictions = results;
+  });
+
+  video.hide();
   cols = floor(width / scl);
   rows = floor(height / scl);
   fr = createP("");
@@ -38,6 +58,25 @@ function setup() {
 }
 
 function draw() {
+  if (predictions.length > 0) {
+    const hand = predictions[0].landmarks; // Get all landmarks
+    const indexFinger = hand[5]; // Example: Index finger tip position
+    particles.forEach((particle) => {
+      particle.followHand({ x: indexFinger[0], y: indexFinger[1] });
+      particle.update();
+      particle.edges();
+      particle.show();
+    });
+  } else {
+    // Update normally without hand influence
+    particles.forEach((particle) => {
+      particle.follow(flowfield);
+      particle.update();
+      particle.edges();
+      particle.show();
+    });
+  }
+
   var yoff = 0;
   for (var y = 0; y < rows; y++) {
     var xoff = 0;
