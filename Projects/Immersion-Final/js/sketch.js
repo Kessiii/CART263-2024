@@ -12,7 +12,7 @@ author, and this description to match your project!
 Description of preload
 */
 var inc = 0.1;
-var scl = 10;
+var scl = 20;
 var cols, rows;
 
 var zoff = 0;
@@ -31,7 +31,7 @@ function setup() {
 
   flowfield = new Array(cols * rows);
 
-  for (var i = 0; i < 300; i++) {
+  for (var i = 0; i < 800; i++) {
     particles[i] = new Particle();
   }
   background(51);
@@ -58,7 +58,7 @@ function draw() {
     }
     yoff += inc;
 
-    zoff += 0.0003;
+    zoff += 0.0002;
   }
 
   for (var i = 0; i < particles.length; i++) {
