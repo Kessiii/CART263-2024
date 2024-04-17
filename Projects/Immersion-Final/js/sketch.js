@@ -44,13 +44,14 @@ function draw() {
     var xoff = 0;
     for (var x = 0; x < cols; x++) {
       var index = x + y * cols;
-      var angle = noise(xoff, yoff, zoff) * TWO_PI;
+      var angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
       var v = p5.Vector.fromAngle(angle);
       v.setMag(1);
       flowfield[index] = v;
       xoff += inc;
     }
     yoff += inc;
+    zoff += 0.0003;
   }
 
   if (video.loadedmetadata && handposeModel) {
