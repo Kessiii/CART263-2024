@@ -4,7 +4,6 @@ class Particle {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxspeed = 2;
-    this.maxforce = 0.1; // Turning force to avoid hand
     this.prevPos = this.pos.copy();
   }
 
@@ -19,10 +18,8 @@ class Particle {
     var x = floor(this.pos.x / scl);
     var y = floor(this.pos.y / scl);
     var index = x + y * cols;
-    if (index < vectors.length) {
-      var force = vectors[index];
-      this.applyForce(force);
-    }
+    var force = vectors[index];
+    this.applyForce(force);
   }
 
   applyForce(force) {
@@ -30,34 +27,33 @@ class Particle {
   }
 
   show() {
-    stroke(0, 5); // Change the alpha to a low value for a trail effect
+    stroke(240, 30);
     strokeWeight(1);
-    line(this.prevPos.x, this.prevPos.y, this.pos.x, this.pos.y);
+    line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     this.updatePrev();
   }
 
   updatePrev() {
-    this.prevPos.set(this.pos);
+    this.prevPos.x = this.pos.x;
+    this.prevPos.y = this.pos.y;
   }
 
   edges() {
-    if (this.pos.x > width) this.pos.x = 0;
-    if (this.pos.x < 0) this.pos.x = width;
-    if (this.pos.y > height) this.pos.y = 0;
-    if (this.pos.y < 0) this.pos.y = height;
-    this.updatePrev();
-  }
-
-  avoidHand(handPos, avoidanceRadius) {
-    let desiredSeparation = avoidanceRadius || 50;
-    let d = p5.Vector.dist(this.pos, handPos);
-    if (d < desiredSeparation) {
-      let diff = p5.Vector.sub(this.pos, handPos);
-      diff.normalize();
-      diff.mult(this.maxspeed);
-      diff.sub(this.vel);
-      diff.limit(this.maxforce);
-      this.applyForce(diff);
+    if (this.pos.x > width) {
+      this.pos.x = 0;
+      this.updatePrev();
+    }
+    if (this.pos.x < 0) {
+      this.pos.x = width;
+      this.updatePrev();
+    }
+    if (this.pos.y > height) {
+      this.pos.y = 0;
+      this.updatePrev();
+    }
+    if (this.pos.y < 0) {
+      this.pos.y = height;
+      this.updatePrev();
     }
   }
 }
