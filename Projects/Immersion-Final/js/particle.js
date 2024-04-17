@@ -1,3 +1,4 @@
+// The Particle class
 class Particle {
   constructor() {
     this.pos = createVector(random(width), random(height));
@@ -14,16 +15,15 @@ class Particle {
     this.acc.mult(0);
   }
 
-  follow(vectors) {
-    var x = floor(this.pos.x / scl);
-    var y = floor(this.pos.y / scl);
-    var index = x + y * cols;
-    var force = vectors[index];
-    this.applyForce(force);
-  }
-
   applyForce(force) {
     this.acc.add(force);
+  }
+
+  followHand(target) {
+    let desired = p5.Vector.sub(target, this.pos); // A vector pointing from the position to the target
+    desired.setMag(this.maxspeed);
+    let steer = p5.Vector.sub(desired, this.vel);
+    this.applyForce(steer);
   }
 
   show() {
