@@ -1,16 +1,27 @@
+/**
+Title of Project
+Author Name
+
+This is a template. You must fill in the title,
+author, and this description to match your project!
+*/
+
 "use strict";
 
-var inc = 0.1;
-var scl = 20;
-var cols, rows;
+/**
+Description of preload
+*/
+let inc = 0.1;
+let scl = 20;
+let cols, rows;
 
-var zoff = 0;
+let zoff = 0;
 
-var fr;
+let fr;
 
-var particles = [];
+let particles = [];
 
-var flowfield;
+let flowfield;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -20,20 +31,21 @@ function setup() {
 
   flowfield = new Array(cols * rows);
 
-  for (var i = 0; i < 800; i++) {
+  for (let i = 0; i < 30000; i++) {
     particles[i] = new Particle();
   }
-  background(51);
+  background(0, 10);
 }
 
 function draw() {
-  var yoff = 0;
-  for (var y = 0; y < rows; y++) {
-    var xoff = 0;
-    for (var x = 0; x < cols; x++) {
-      var index = x + y * cols;
-      var angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
-      var v = p5.Vector.fromAngle(angle);
+  background(0, 20);
+  let yoff = 0;
+  for (let y = 0; y < rows; y++) {
+    let xoff = 0;
+    for (let x = 0; x < cols; x++) {
+      let index = x + y * cols;
+      let angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
+      let v = p5.Vector.fromAngle(angle);
       v.setMag(1);
       flowfield[index] = v;
       xoff += inc;
@@ -50,7 +62,7 @@ function draw() {
     zoff += 0.0002;
   }
 
-  for (var i = 0; i < particles.length; i++) {
+  for (let i = 0; i < particles.length; i++) {
     particles[i].follow(flowfield);
     particles[i].update();
     particles[i].edges();
