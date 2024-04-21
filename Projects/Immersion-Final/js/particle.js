@@ -22,25 +22,46 @@ class Particle {
     this.applyForce(force);
   }
 
+  repulse(predictions, closeRadius, farRadius) {
+    for (const prediction of predictions) {
+      for (const keypoint of prediction.landmarks) {
+        const kpx = keypoint[0];
+        const kpy = keypoint[1];
+        const dist = Math.sqrt(
+          (this.pos.x - kpx) ** 2 + (this.pos.y - kpy) ** 2
+        );
+        if (dist < closeRadius) {
+          const vec = createVector(this.pos.x - kpx, this.pos.y - kpy);
+          this.applyForce(vec.mult(5));
+        } else if (dist > closeRadius && dist < farRadius) {
+          const vec = createVector(kpx - this.pos.x, kpy - this.pos.y);
+          this.applyForce(vec.div(100));
+        }
+      }
+    }
+  }
+
   applyForce(force) {
     this.acc.add(force);
   }
 
   show() {
     stroke(240, 30);
-    strokeWeight(1);
+    strokeWeight(10);
 
     point(this.pos.x, this.pos.y);
   }
 
   edges() {
-    if (
-      this.pos.x > width ||
-      this.pos.x < 0 ||
-      this.pos.y > height ||
-      this.pos.y < 0
-    ) {
-      this.pos = createVector(random(width), random(height));
+    if (this.pos.x > width) {
+      this.pos.x = 0;
+    } else if (this.pos.x < 0) {
+      this.pos.x = width;
+    }
+    if (this.pos.y > height) {
+      this.pos.y = 0;
+    } else if (this.pos.y < 0) {
+      this.pos.y = height;
     }
   }
 }
