@@ -8,9 +8,6 @@ author, and this description to match your project!
 
 "use strict";
 
-/**
-Description of preload
-*/
 // Importing required libraries for hand tracking
 let handpose;
 let predictions = [];
@@ -26,6 +23,10 @@ let particles = [];
 
 let flowfield;
 
+// Declare a variable for the start button and a flag to control the visualization start
+let startButton;
+let startVisualization = false;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cols = floor(width / scl);
@@ -34,7 +35,6 @@ function setup() {
   flowfield = new Array(cols * rows);
 
   for (let i = 0; i < 10000; i++) {
-    // Adjust number of particles as needed
     particles[i] = new Particle();
   }
   background(0, 10);
@@ -50,13 +50,33 @@ function setup() {
   });
 
   video.hide(); // Hide the HTML element of the video
+
+  // Create a button to start the visualization
+  startButton = createButton("Start the Immersion");
+  startButton.position(width / 2 - startButton.width / 2, height / 2);
+  startButton.mousePressed(startFlowField);
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+function startFlowField() {
+  startVisualization = true;
+  startButton.hide(); // Hide the button after clicking
 }
 
 function draw() {
+  if (!startVisualization) {
+    // Optionally, add some text or styling here for the start screen
+    background(50);
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(
+      "Click the button to start the visualization",
+      width / 2,
+      height / 2 - 40
+    );
+    return; // Skip the rest of the draw function until visualization starts
+  }
+
   fill(0, 10);
   noStroke();
   rect(0, 0, width, height);
@@ -81,18 +101,6 @@ function draw() {
     zoff += 0.0002;
   }
 
-  // drawKeypoints();
-
-  if (predictions.length > 0) {
-    const hand = predictions[0];
-    const indexFingerTip = hand.annotations.indexFinger[3]; // Using the index finger tip
-    const fingerX = indexFingerTip[0];
-    const fingerY = indexFingerTip[1];
-
-    // Optionally modify flow field based on the finger position
-    // This could involve changing vector directions near the finger, influencing particle behavior, etc.
-  }
-
   // Move and display particles
   for (let i = 0; i < particles.length; i++) {
     particles[i].follow(flowfield);
@@ -101,6 +109,10 @@ function draw() {
     particles[i].edges();
     particles[i].show();
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function drawKeypoints() {
