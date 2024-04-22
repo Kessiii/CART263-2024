@@ -1,9 +1,12 @@
 /**
-Title of Project
-Author Name
+Convergence
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Kestrel Villapando
+
+This is a generative piece using Perlin Noise and Flow Fields. 
+Using ML5, the flow field reacts with the hand of the viewer. 
+
+
 */
 
 "use strict";
@@ -26,15 +29,8 @@ let flowfield;
 // Declare a variable for the start button and a flag to control the visualization start
 let startButton;
 let startVisualization = false;
-let mySound;
-
-function preload() {
-  mySound = loadSound("assets/sounds/Journey.mp3");
-}
 
 function setup() {
-  mySound.play();
-
   createCanvas(windowWidth, windowHeight);
   cols = floor(width / scl);
   rows = floor(height / scl);

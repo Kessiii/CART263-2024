@@ -26,9 +26,9 @@ canvas {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.8s; /* Smooth transition for hover effect */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 .button:hover {
-  background-color: #e55347; /* Slightly darker red when hovered */
+  background-color: #e02413; /* Slightly darker red when hovered */
 }
