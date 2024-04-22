@@ -17,3 +17,18 @@ body {
 canvas {
   display: block;
 }
+
+.button {
+  background-color: #ff6347; /* Tomato red background */
+  color: #ffffff; /* White text */
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.8s; /* Smooth transition for hover effect */
+}
+
+.button:hover {
+  background-color: #e55347; /* Slightly darker red when hovered */
+}

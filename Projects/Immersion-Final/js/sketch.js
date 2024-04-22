@@ -52,9 +52,10 @@ function setup() {
   video.hide(); // Hide the HTML element of the video
 
   // Create a button to start the visualization
-  startButton = createButton("Start Visualization");
-  startButton.position(width / 2 - startButton.width / 2, height / 2 + 30);
+  startButton = createButton("Start the Immersion");
+  startButton.position(width / 2 - 50 - startButton.width / 2, height / 2 + 70);
   startButton.mousePressed(startFlowField);
+  startButton.addClass("button");
 }
 
 function startFlowField() {
@@ -69,22 +70,31 @@ function draw() {
 
     // Title in bold
     fill(255);
-    textSize(48); // Larger text for the title
+    textSize(95); // Larger text for the title
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
-    text(
-      "Welcome to the Flow Field Visualization",
-      width / 2,
-      height / 2 - 100
-    );
+    text("CONVERGENCE", width / 2, height / 2 - 100);
 
-    // Descriptive sentence
-    textSize(24); // Smaller text for the description
+    // First line of descriptive sentence
+    textSize(20); // Smaller text for the description
     textStyle(NORMAL);
     text(
-      "Click the button below to explore the interactive visualization.",
+      "The Flow Field is disrupted and is in search for a human connection.",
       width / 2,
-      height / 2 - 50
+      height / 2 - 30
+    );
+
+    // Second line of descriptive sentence
+    text(
+      "Once you start the Immersion, place hand in view to camera",
+      width / 2,
+      height / 2
+    );
+
+    text(
+      "and watch the flow field react to your hand.",
+      width / 2,
+      height / 2 + 30
     );
 
     return; // Skip the rest of the draw function until visualization starts
