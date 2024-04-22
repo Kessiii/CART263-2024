@@ -52,8 +52,8 @@ function setup() {
   video.hide(); // Hide the HTML element of the video
 
   // Create a button to start the visualization
-  startButton = createButton("Start the Immersion");
-  startButton.position(width / 2 - startButton.width / 2, height / 2);
+  startButton = createButton("Start Visualization");
+  startButton.position(width / 2 - startButton.width / 2, height / 2 + 30);
   startButton.mousePressed(startFlowField);
 }
 
@@ -64,16 +64,29 @@ function startFlowField() {
 
 function draw() {
   if (!startVisualization) {
-    // Optionally, add some text or styling here for the start screen
+    // Start screen layout
     background(50);
+
+    // Title in bold
     fill(255);
-    textSize(32);
+    textSize(48); // Larger text for the title
+    textStyle(BOLD);
     textAlign(CENTER, CENTER);
     text(
-      "Click the button to start the visualization",
+      "Welcome to the Flow Field Visualization",
       width / 2,
-      height / 2 - 40
+      height / 2 - 100
     );
+
+    // Descriptive sentence
+    textSize(24); // Smaller text for the description
+    textStyle(NORMAL);
+    text(
+      "Click the button below to explore the interactive visualization.",
+      width / 2,
+      height / 2 - 50
+    );
+
     return; // Skip the rest of the draw function until visualization starts
   }
 
