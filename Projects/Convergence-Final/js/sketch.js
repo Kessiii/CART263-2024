@@ -1,9 +1,8 @@
 /**
-Title of Project
-Author Name
+Convergence
+Kestrel Villapando
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+A flow field that uses ML5 to detect hand. Once the hand is seen, there is a interaction between the hand and the flow field.
 */
 
 "use strict";
